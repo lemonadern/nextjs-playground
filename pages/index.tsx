@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
-import client from 'lib/client'
+import type { NextPage } from "next"
+import { useEffect, useState } from "react"
+import client from "lib/client"
 
 interface User {
   id: number,
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     client
-      .get('user/').json<User[]>()
+      .get("user/").json<User[]>()
       .then(value => {
         setUsers(value)
         console.log("api call success.")
