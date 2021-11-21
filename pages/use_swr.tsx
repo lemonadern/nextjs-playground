@@ -2,7 +2,7 @@ import type { NextPage } from "next"
 import { useEffect, useState } from "react"
 
 import useSWR from "swr"
-import fetcher from "lib/fetcher"
+import client from "lib/client"
 
 interface User {
   id: number,
@@ -10,7 +10,7 @@ interface User {
 }
 
 const Home: NextPage = () => {
-  const { data, error } = useSWR<User[]>("user", fetcher)
+  const { data, error } = useSWR<User[]>("user", () => client.get("user").json<User[]>())
 
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
